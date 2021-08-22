@@ -13,7 +13,7 @@ module.exports.taskValidator = celebrate({
     header: Joi.string().required(),
     description: Joi.string(),
     priority: Joi.string().custom(priorityValidator).required(),
-    date: Joi.date().required(),
+    date: Joi.string().length(10).required(),
     done: Joi.boolean().required(),
   }),
 });

@@ -20,7 +20,7 @@ const taskSchema = new mongoose.Schema({
     default: 'l',
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
     default: new Date().toISOString().slice(0,10),
   },

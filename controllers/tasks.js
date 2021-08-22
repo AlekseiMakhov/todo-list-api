@@ -20,6 +20,7 @@ module.exports.addTask = (req, res, next) => Task.create(req.body)
 
 // редактирование задачи
 module.exports.editTask = (req, res, next) => {
+  console.log(req)
   Task.findByIdAndUpdate(req.params.id, req.body, { new: true })
   .then(task => {
     if (!task) {
@@ -37,7 +38,9 @@ module.exports.editTask = (req, res, next) => {
 
 // запрос всех задач за нужную дату
 module.exports.getTasks = (req, res, next) => Task.find({})
-  .then(tasks => res.send(tasks))
+  .then(tasks => {
+    res.send(tasks.filter(task => req.query.date == task.date))
+  })
   .catch(err => {
     if (err.name === 'CastError') {
       throw new BadRequestError(badRequestErrorText);
