@@ -20,7 +20,6 @@ module.exports.addTask = (req, res, next) => Task.create(req.body)
 
 // редактирование задачи
 module.exports.editTask = (req, res, next) => {
-  console.log(req)
   Task.findByIdAndUpdate(req.params.id, req.body, { new: true })
   .then(task => {
     if (!task) {

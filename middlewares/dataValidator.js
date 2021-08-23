@@ -10,8 +10,8 @@ const priorityValidator = (value) => {
 
 module.exports.taskValidator = celebrate({
   body: Joi.object().keys({
-    header: Joi.string().required(),
-    description: Joi.string(),
+    header: Joi.string().min(1).max(100).required(),
+    description: Joi.string().min(1).required(),
     priority: Joi.string().custom(priorityValidator).required(),
     date: Joi.string().length(10).required(),
     done: Joi.boolean().required(),
